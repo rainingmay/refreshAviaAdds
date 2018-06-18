@@ -1,6 +1,8 @@
 package refreshAviaAdds;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -30,6 +32,11 @@ public class WebDriverHelper {
         driver = new FirefoxDriver();
         return driver;
     }
+    public static WebDriver refreshBrowser() {
+        //driver = new ChromeDriver();
+        driver.navigate().refresh();
+        return driver;
+    }
 
     public static void close() {
         if (driver != null) {
@@ -57,13 +64,20 @@ public class WebDriverHelper {
     public static void waitForPage() throws InterruptedException {
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
     }
+    public static void waitForPage(int sec) throws InterruptedException {
+        driver.manage().timeouts().implicitlyWait(sec, TimeUnit.SECONDS);
+    }
+
+    public static WebElement findElementBy(By by){
+        WebElement element = getDriver().findElement(by);
+        return element;
+    }
 
 //    public static void waitForElement(WebElement element) throws NoSuchElementException {
 //        WebDriverWait wait = new WebDriverWait(driver, 5);
 //        wait.until(ExpectedConditions.visibilityOf(element));
 //    }
 
-        String url = "http://www.avia-board.com/";
 
 //    @FindBy(name = "login")
 //    private WebElement login;
